@@ -1,14 +1,13 @@
-import { Github, Twitter, Instagram, Linkedin, Youtube, ExternalLink, Circle, Layout } from 'lucide-react';
+import { Github, Twitter, ExternalLink, Layout } from 'lucide-react';
 
 interface SocialLinkCardProps {
-  platform: 'github' | 'twitter' | 'instagram' | 'linkedin' | 'youtube' | 'website';
+  platform: string;
   username: string;
   url: string;
 }
 
 const SocialLinkCard = ({
   platform,
-  username,
   url,
 }: SocialLinkCardProps) => {
   const getPlatformIcon = () => {

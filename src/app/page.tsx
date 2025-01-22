@@ -1,8 +1,6 @@
-import BackgroundAnimation from '@/components/BackgroundAnimation';
 import NeuralNetwork from '@/components/NeuralNetwork';
-import ProcessingAnimation from '@/components/ProcessingAnimation';
 import SocialLinkCard from '@/components/SocialLinkCard';
-import { Circle, RectangleEllipsis, Square } from 'lucide-react';
+import { Square } from 'lucide-react';
 
 export default function Home() {
   const socialLinks = [
@@ -56,7 +54,6 @@ export default function Home() {
   return (
     <div className="h-screen flex flex-col">
       <NeuralNetwork />
-      {/* <ProcessingAnimation /> */}
       <header className="flex sticky w-full border-b-[1px] shadow-sm bg-opacity-60 bg-white">
         <div className="flex items-center text-sm font-medium mx-[2vw] px-8 py-4">
           <Square className="w-3 h-3" color="#bbb" strokeWidth={'2px'} />

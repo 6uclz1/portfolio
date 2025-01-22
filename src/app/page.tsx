@@ -52,20 +52,19 @@ export default function Home() {
   ] as const;
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen">
       <NeuralNetwork />
       <header className="flex sticky w-full border-b-[1px] shadow-sm bg-opacity-60 bg-white">
-        <div className="flex items-center text-sm font-medium mx-[2vw] px-8 py-4">
+        <div className="flex text-sm font-medium mx-[2vw] px-8 py-4">
           <Square className="w-3 h-3" color="#bbb" strokeWidth={'2px'} />
           <div className='px-1.5'></div>
           <div className='text-sm text-gray-400 gap-6 max-w-6xl'>
             6uclz1&apos;s profile page
           </div>
         </div>
-
       </header>
-      <main className="flex container mx-auto my-8 items-center justify-center h-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto items-center justify-center">
+      <main className="flex container mx-auto my-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {socialLinks.map((link, index) => (
             <SocialLinkCard
               key={index}

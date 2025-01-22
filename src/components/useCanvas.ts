@@ -67,21 +67,6 @@ export const useCanvas = (canvas: HTMLCanvasElement) => {
       ctx.arc(particle.x, particle.y, 1, 0, Math.PI * 2);
       ctx.fillStyle = particle.color;
       ctx.fill();
-
-      // Connect nearby particles
-    //   particles.forEach(other => {
-    //     const dx = particle.x - other.x;
-    //     const dy = particle.y - other.y;
-    //     const distance = Math.sqrt(dx * dx + dy * dy);
-
-    //     if (distance < 250) {
-    //       ctx.beginPath();
-    //       ctx.moveTo(particle.x, particle.y);
-    //       ctx.lineTo(other.x, other.y);
-    //       ctx.strokeStyle = `rgba(200, 200, 200, ${(100 - distance) / 500})`;
-    //       ctx.stroke();
-    //     }
-    //   });
     });
 
     animationFrameId = requestAnimationFrame(drawParticles);

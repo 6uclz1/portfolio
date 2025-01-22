@@ -1,26 +1,35 @@
-"use client"
+"use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
-const ProcessingAnimation = () => {
-    const canvasRef = useRef(null);
-    const requestIdRef = useRef(null);
+const ProcessingAnimation: React.FC = () => {
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const requestIdRef = useRef<number | null>(null);
 
     // Animation parameters
     const formResolution = 10;
     const stepSize = 3;
     const initRadius = 60;
-    const state = useRef({
+    const state = useRef<{
+        centerX: number;
+        centerY: number;
+        x: number[];
+        y: number[];
+        filled: boolean;
+    }>({
         centerX: 0,
         centerY: 0,
         x: new Array(formResolution).fill(0),
         y: new Array(formResolution).fill(0),
-        filled: false
+        filled: false,
     });
 
     const initializeCanvas = () => {
         const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
 
         // Set canvas size based on the window size
         canvas.width = window.innerWidth;
@@ -36,14 +45,10 @@ const ProcessingAnimation = () => {
             state.current.y[i] = Math.sin(angle * i) * initRadius * 2; // Elliptical shape
         }
 
-        ctx.strokeStyle = 'rgba(220, 220, 220, 0.2)';
-        ctx.fillStyle = 'white';
+        ctx.strokeStyle = "rgba(220, 220, 220, 0.2)";
+        ctx.fillStyle = "white";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // // Draw initial state with steps progressed
-        // for (let step = 0; step < 150; step++) {
-        //     advanceState();
-        // }
         draw();
     };
 
@@ -65,7 +70,11 @@ const ProcessingAnimation = () => {
 
     const draw = () => {
         const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
         const { centerX, centerY, x, y } = state.current;
 
         // Move center slightly to create dynamic motion
@@ -107,13 +116,13 @@ const ProcessingAnimation = () => {
             initializeCanvas();
         };
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
 
         return () => {
             if (requestIdRef.current) {
                 cancelAnimationFrame(requestIdRef.current);
             }
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
 
@@ -126,4 +135,3 @@ const ProcessingAnimation = () => {
 };
 
 export default ProcessingAnimation;
-
